@@ -4,13 +4,13 @@ import { useEffect, useState } from "react"
 
 
 export default function Userlist(){
-    const [users,setUsers] =  useState([]);
+    const [users, setUsers] =  useState([]);
     //useEffect(function(){
         useEffect(() => {
-            if(users.length !== 0){
+            if (users.length != 0) {
             return;
         }//infite loop me chale jayega ye nahi lagaya to
-        console.log('called.............');
+        console.log('called................');
         const promise = axios.get("http://localhost:4200/users");
         //promise.then(function(response){
          //   setUsers(response.data);
