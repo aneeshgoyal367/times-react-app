@@ -50,9 +50,10 @@ export default function Userform() {
             console.log(response);
         });
     }
-    return (
+    return (//JSX
         <div>
             <h3>Create User</h3>
+            <div className="form-group"></div>
 
             <input placeholder='First Name' name='firstname' value={userform.firstname} onChange={handleEvent}></input>
             <input placeholder='Age' type='number' name='age' value={userform.age} onChange={handleEvent}></input>

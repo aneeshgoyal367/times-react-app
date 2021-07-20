@@ -6,8 +6,8 @@ import { useEffect, useState } from "react"
 export default function Userlist(){
     const [users,setUsers] =  useState([]);
     //useEffect(function(){
-        useEffect(() =>{
-            if(users.length !=0){
+        useEffect(() => {
+            if(users.length !== 0){
             return;
         }//infite loop me chale jayega ye nahi lagaya to
         console.log('called.............');
@@ -16,7 +16,7 @@ export default function Userlist(){
          //   setUsers(response.data);
          //console.log(response.data);
        // })
-       promise.then((response) => setUsers(response.data))
+       promise.then(response => setUsers(response.data))
     })
     return(
         <div>
@@ -24,14 +24,15 @@ export default function Userlist(){
         table-striped'>
             <thead>
                 <tr><th>First name</th>
-                <th>Age</th></tr>
+                <th>Age</th>
+                <th>Joining Date</th></tr>
             </thead>
             <tbody>
-               {users.map(function(user, index) {
-                   return <tr>
+               {users.map((user, index)=> <tr key={index}>
                    <td>{user.firstname}</td>
-                   <td>{user.age}</td></tr>
-                })}
+                   <td>{user.age}</td>
+                   <td>{user.joiningDate}</td>
+    </tr>)}
             </tbody>
         </table>
         </div>
