@@ -30,18 +30,21 @@
 //}
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
+import Message from "./Message";
 
 
 import { useState } from "react"
 
 
-export default function Userform() {
+export default function Userform() {//stateful
     const [userform, setUserform] = useState({
         firstname: "Aneesh",
         age: 20
 
 
     }); //hook -function
+const [message, setMessage]= useState({type : '', text:""});
+
     const handleEvent = function (event) {
         console.log(event);
         setUserform({ ...userform, [event.target.name]: event.target.value })
@@ -51,23 +54,30 @@ export default function Userform() {
         console.log(userform);
         const promise = axios.post("http://localhost:4200/users", userform);
         promise.then(function (response) {
-            console.log(response);
+            console.log(response);;
+            setMessage({...message,type:'success',text:"User record was saved"})
         });
+        promise.catch(function(error){
+            setMessage({...message, type:'error',text:"User record was not saved"})
+        })
     }
-    const handleSelection = function(event){
+    const handleSelection = function (event) {
         //console.log(event.target.value);
-        setUserform({...userform, [event.target.name]:event.target.value })
+        setUserform({ ...userform, [event.target.name]: event.target.value })
 
     }
     return (//JSX
         <div>
             <h3>Create User</h3>
-            <div className="form-group"></div>
+<Message message={message}></Message>
+
+            <div className="form-group">
 
             <input placeholder='First Name' className="form-control" name='firstname' value={userform.firstname} onChange={handleEvent}></input>
+            </div>
             <input placeholder='Age' className="form-control" type='number' name='age' value=
-            {userform.age} onChange={handleEvent}></input>
-            <label htmlfor="joiningDate">Joining Date:</label>
+                {userform.age} onChange={handleEvent}></input>
+            <label htmlFor="joiningDate">Joining Date:</label>
             <div className="form-group">
                 <input type='date' className="form-control" name='joining date' value=
                     {userform.joiningDate} onChange={handleEvent}></input>
@@ -81,5 +91,5 @@ export default function Userform() {
             <Button className="form-control" onClick={save}>Save</Button>
         </div>
     )
-    
+
 }

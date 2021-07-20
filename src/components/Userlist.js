@@ -1,13 +1,14 @@
 import axios from "axios";
 
 import { useEffect, useState } from "react"
+import Counter from "./Counter";
 
 
 export default function Userlist(){
     const [users, setUsers] =  useState([]);
     //useEffect(function(){
         useEffect(() => {
-            if (users.length != 0) {
+            if (users.length !== 0) {
             return;
         }//infite loop me chale jayega ye nahi lagaya to
         console.log('called................');
@@ -19,7 +20,7 @@ export default function Userlist(){
        promise.then(response => setUsers(response.data))
     })
     return(
-        <div>
+        <div><Counter count={users.length}></Counter>
         <table className='table table-bordered table-hover table-responsive
         table-striped'>
             <thead>
