@@ -27,17 +27,10 @@ export default function Userlist(){
                 <th>Age</th></tr>
             </thead>
             <tbody>
-                {users.map(function(user, index) {
+               {users.map(function(user, index) {
                    return <tr>
-                       <td>
-                           {user.firstname}
-                       </td>
-                       <td>
-                           {user.age}
-                       </td>
-
-                    </tr>
-                    
+                   <td>{user.firstname}</td>
+                   <td>{user.age}</td></tr>
                 })}
             </tbody>
         </table>
