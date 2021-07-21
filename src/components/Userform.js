@@ -43,7 +43,7 @@ export default function Userform() {//stateful
 
 
     }); //hook -function
-const [message, setMessage]= useState({type : '', text:""});
+    const [message, setMessage] = useState({ type: '', text: "" });
 
     const handleEvent = function (event) {
         console.log(event);
@@ -52,13 +52,13 @@ const [message, setMessage]= useState({type : '', text:""});
 
     const save = function (event) {
         console.log(userform);
-        const promise = axios.post("http://localhost:4200/users", userform);
+        const promise = axios.post(process.env.REACT_APP_SERVER_URL, userform);
         promise.then(function (response) {
             console.log(response);;
-            setMessage({...message,type:'success',text:"User record was saved"})
+            setMessage({ ...message, type: 'success', text: "User record was saved" })
         });
-        promise.catch(function(error){
-            setMessage({...message, type:'error',text:"User record was not saved"})
+        promise.catch(function (error) {
+            setMessage({ ...message, type: 'error', text: "User record was not saved" })
         })
     }
     const handleSelection = function (event) {
@@ -69,11 +69,11 @@ const [message, setMessage]= useState({type : '', text:""});
     return (//JSX
         <div>
             <h3>Create User</h3>
-<Message message={message}></Message>
+            <Message message={message}></Message>
 
             <div className="form-group">
 
-            <input placeholder='First Name' className="form-control" name='firstname' value={userform.firstname} onChange={handleEvent}></input>
+                <input placeholder='First Name' className="form-control" name='firstname' value={userform.firstname} onChange={handleEvent}></input>
             </div>
             <input placeholder='Age' className="form-control" type='number' name='age' value=
                 {userform.age} onChange={handleEvent}></input>
