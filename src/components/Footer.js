@@ -1,5 +1,6 @@
-export default function Footer(){  //react component is a function
+export default function Footer(){   //react component is a function
+
     return (
-     <div>Footer</div>
+        <div>Footer</div>
     )
 }

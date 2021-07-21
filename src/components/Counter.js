@@ -2,7 +2,8 @@
 
 
 
-export default function Counter(props) {//stateless
+
+export default function Counter(props){//stateless
     return (
         <span>{props.count}</span>
     )
