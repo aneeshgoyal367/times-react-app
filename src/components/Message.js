@@ -9,7 +9,7 @@ export default function Message(props){//stateless
     }else{
 
      css="alert alert-";
-     css += (props.message.type==='error')?'danger' : 'success';
+     css += (props.message.type==='error') ?'danger' : 'success';
     
     }
     return(

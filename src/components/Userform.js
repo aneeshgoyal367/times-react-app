@@ -82,8 +82,8 @@ const [message, setMessage]= useState({type : '', text:""});
                 <input type='date' className="form-control" name='joining date' value=
                     {userform.joiningDate} onChange={handleEvent}></input>
             </div>
-            <select name='skill' onChange={handleSelection} >
-                <option selected>Select the skill</option>
+            <select value='default' className='dropdown' name='skill' onChange={handleSelection} >
+                <option >Select the skill</option>
                 <option value='HTML'>HTML</option>
                 <option value='React'>CSS</option>
                 <option value='Javascript'>JAVASCRIPT</option>
