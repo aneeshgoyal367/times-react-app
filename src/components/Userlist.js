@@ -2,6 +2,7 @@ import axios from "axios";
 //import { Button } from "bootstrap";
 
 import { useEffect, useState } from "react"
+
 import Counter from "./Counter";
 
 
@@ -12,7 +13,7 @@ export default function Userlist() {
         // if (users.length !== -1) {
         // return;
         // }//infite loop me chale jayega ye nahi lagaya to
-        console.log('called................');
+        //console.log('called................');
         const promise = axios.get(process.env.REACT_APP_SERVER_URL);
         //promise.then(function(response){
         //   setUsers(response.data);
@@ -22,7 +23,7 @@ export default function Userlist() {
         promise.then(response => setUsers(response.data))
     }, [])
     const deleteUser = function () {
-        alert("Are u sure");
+        // alert("Are u sure");
         const promise = axios.delete(process.env.REACT_APP_SERVER_URL + this);
         promise.then(response => {
             //remove delete record from list

@@ -33,7 +33,7 @@ import Button from 'react-bootstrap/Button';
 import Message from "./Message";
 
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 export default function Userform() {//stateful
@@ -43,22 +43,28 @@ export default function Userform() {//stateful
 
 
     }); //hook -function
-    const [message, setMessage] = useState({ type: '', text: "" });
+    const [message, setMessage] = useState();
+    const [skills, setSkills] = useState([]);
+
 
     const handleEvent = function (event) {
         console.log(event);
         setUserform({ ...userform, [event.target.name]: event.target.value })
     }
+    useEffect(function () {
+        axios.get(process.env.REACT_APP_SKILLS_URL)
+            .then(response => setSkills(response.data));
+    }, []);
 
     const save = function (event) {
-        console.log(userform);
+        //console.log(userform);
         const promise = axios.post(process.env.REACT_APP_SERVER_URL, userform);
         promise.then(function (response) {
-            console.log(response);;
+            // console.log(response);;
             setMessage({ ...message, type: 'success', text: "User record was saved" })
         });
         promise.catch(function (error) {
-            setMessage({ ...message, type: 'error', text: "User record was not saved" })
+            setMessage({ ...message, type: 'error', text: "User record was not saved" });
         })
     }
     const handleSelection = function (event) {
@@ -82,14 +88,15 @@ export default function Userform() {//stateful
                 <input type='date' className="form-control" name='joining date' value=
                     {userform.joiningDate} onChange={handleEvent}></input>
             </div>
-            <select value='default' className='dropdown' name='skill' onChange={handleSelection} >
-                <option >Select the skill</option>
-                <option value='HTML'>HTML</option>
+            <select className='dropdown' name='skill' onChange={handleSelection} >
+                <option defaultValue >Select the skill</option>
+                {skills.map((skill, index)=> <option value={skill}>{skill}</option>)}
+                {/* <option value='HTML'>HTML</option>
                 <option value='React'>CSS</option>
-                <option value='Javascript'>JAVASCRIPT</option>
+                <option value='Javascript'>JAVASCRIPT</option> */}
             </select>
             <Button className="form-control" onClick={save}>Save</Button>
         </div>
     )
 
-}
+}//MAP FUNCTION FOR SKILLS KI JAGAH
